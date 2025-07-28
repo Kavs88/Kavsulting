@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark"> <!-- Default to dark mode -->
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kavanagh Consulting | Strategic Business Innovation & Growth</title>
+  <meta name="description" content="Kavanagh Consulting, led by Sam Kavanagh, drives business transformation and growth in Southeast Asia through expert strategy, development, coaching, and M&A advisory.">
+
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0348F8',
+            secondary: '#FF6B35'
+          },
+          borderRadius: {
+            none: '0px', sm: '4px', DEFAULT: '8px', md: '12px', lg: '16px',
+            xl: '20px', '2xl': '24px', '3xl': '32px', full: '9999px', button: '8px'
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+  <style id="custom-styles-for-build">
+    body { font-family: 'Montserrat', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+    .header-sticky { transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+    .header-sticky.scrolled { box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .dark .header-sticky.scrolled { box-shadow: 0 4px 12px rgba(255,255,255,0.05); }
+
+    .timeline-list-item::before {
+      content: ''; position: absolute; top: 24px; left: 50%; height: 2px;
+      background: linear-gradient(90deg, #0348F8, #FF6B35);
+      z-index: 0; width: 100%; transform: translateX(-50%);
+    }
+    @media (max-width: 767px) {
+        .timeline-list-item { padding-left: 48px; }
+        .timeline-list-item::before {
+            left: 24px; top: 48px; width: 2px; height: calc(100% - 24px + 3rem); transform: translateX(0);
+        }
+        .timeline-list-item .mx-auto { margin-left: -48px; margin-right: auto; }
+    }
+    .timeline-list-item:last-child::before { display: none; }
+    .gradient-text {
+      background: linear-gradient(90deg, #0348F8, #FF6B35);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .testimonial-container {
+      scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .testimonial-container::-webkit-scrollbar { display: none; }
+    .testimonial-card { scroll-snap-align: start; transition: opacity 0.5s ease; }
+    .dot-indicator { transition: all 0.3s ease; }
+    :not(.dark) .dot-indicator.active { background-color: #0348F8; width: 24px; }
+    .dark .dot-indicator.active { background-color: #FF6B35; width: 24px; }
+
+    .animated-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0; }
+    .animated-bg .shape {
+      position: absolute; border-radius: 50%; animation: float 15s infinite ease-in-out;
+      background: linear-gradient(45deg, rgba(3, 72, 248, 0.07), rgba(255, 107, 53, 0.07));
+    }
+    .dark .animated-bg .shape { background: linear-gradient(45deg, rgba(3, 72, 248, 0.15), rgba(255, 107, 53, 0.15)); }
+    .animated-bg .shape:nth-child(1) { width: 400px; height: 400px; top: -100px; right: -100px; animation-delay: 0s; }
+    .animated-bg .shape:nth-child(2) { width: 300px; height: 300px; bottom: -50px; left: -50px; animation-delay: 5s; }
+    .animated-bg .shape:nth-child(3) { width: 200px; height: 200px; bottom: 30%; right: 20%; animation-delay: 10s; }
+    @keyframes float { 0% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(20px,20px) rotate(5deg); } 100% { transform: translate(0,0) rotate(0deg); } }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px;
+      background: linear-gradient(90deg, #0348F8, #FF6B35);
+      transform: scaleX(0); transform-origin: right; transition: transform 0.3s ease;
+    }
+    .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+
+    .btn-gradient { background: linear-gradient(90deg, #0348F8, #FF6B35); transition: all 0.3s ease; }
+    .btn-gradient:hover { background: linear-gradient(90deg, #0237D5, #E55A2B); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(3,72,248,0.2); }
+    .dark .btn-gradient:hover { box-shadow: 0 10px 20px rgba(255,107,53,0.2); }
+
+    .btn-outline {
+      background: transparent; border: 2px solid var(--outline-color, #0348F8); color: var(--outline-color, #0348F8);
+      transition: all 0.3s ease;
+    }
+    :not(.dark) .btn-outline { --outline-color: #0348F8; }
+    :not(.dark) .btn-outline:hover { background: rgba(3,72,248,0.1); transform: translateY(-2px); }
+    .dark .btn-outline { --outline-color: #FF6B35; }
+    .dark .btn-outline:hover { background: rgba(255,107,53,0.1); transform: translateY(-2px); }
+
+    .stats-card { transition: all 0.3s ease; }
+    .stats-card:hover { transform: translateY(-5px); }
+    :not(.dark) .stats-card { background-color: #ffffff; }
+    :not(.dark) .stats-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+    .dark .stats-card:hover { box-shadow: 0 10px 20px rgba(255,255,255,0.05); }
+
+    :not(.dark) .service-card { background-color: #ffffff; border-color: #0348F8; }
+    :not(.dark) .service-card .group-hover\:bg-primary\/20:hover { background-color: rgba(3, 72, 248, 0.2) !important; }
+    :not(.dark) .service-card .text-primary { color: #0348F8 !important; }
+    :not(.dark) .service-card .bg-blue-100 { background-color: #EBF8FF !important; }
+
+    .social-icon { transition: all 0.3s ease; }
+    .social-icon:hover { transform: translateY(-3px) scale(1.1); }
+
+    .btn-contact { transition: all 0.3s ease; }
+    .btn-contact:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+    .btn-contact:focus-visible { outline: 2px solid transparent; outline-offset: 2px; ring: 2px; }
+    :not(.dark) .btn-contact:focus-visible { ring-color: #0348F8; }
+    .dark .btn-contact:focus-visible { ring-color: #FF6B35; }
+    .btn-contact-email { background-color: #0077cc; } .btn-contact-email:hover { background-color: #005fa3; }
+    .btn-contact-whatsapp { background-color: #25d366; } .btn-contact-whatsapp:hover { background-color: #1da851; }
+    .btn-contact-zalo { background-color: #0068ff; } .btn-contact-zalo:hover { background-color: #0052cc; }
+
+    .swiper-button-next, .swiper-button-prev {
+      width: 44px; height: 44px; border-radius: 50%; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .swiper-button-next::after, .swiper-button-prev::after { font-size: 1.25rem; font-weight: bold; }
+    :not(.dark) .swiper-button-next, :not(.dark) .swiper-button-prev { color: #0348F8; background-color: rgba(255,255,255,0.9); }
+    :not(.dark) .swiper-button-next:hover, :not(.dark) .swiper-button-prev:hover { background-color: #0348F8; color: white; }
+    .dark .swiper-button-next, .dark .swiper-button-prev { color: #FF6B35; background-color: rgba(31,41,55,0.9); }
+    .dark .swiper-button-next:hover, .dark .swiper-button-prev:hover { background-color: #FF6B35; color: #111827; }
+
+    :not(.dark) .client-swiper .bg-white { background-color: #ffffff !important; }
+
+    /* Testimonial Carousel Arrow Responsive Positioning */
+    .testimonial-carousel-wrapper .swiper-button-prev { left: 8px; }
+    .testimonial-carousel-wrapper .swiper-button-next { right: 8px; }
+    @media (min-width: 640px) { /* sm */
+        .testimonial-carousel-wrapper .swiper-button-prev { left: 16px; }
+        .testimonial-carousel-wrapper .swiper-button-next { right: 16px; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-gray-800 dark:text-gray-200 bg-white dark:bg-slate-900">
+
+  <header class="header-sticky fixed top-0 left-0 w-full z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm dark:shadow-md">
+    <div class="container mx-auto px-6 flex justify-between items-center h-20">
+      <a href="#hero" class="text-2xl font-bold text-gray-900 dark:text-white flex items-center">
+        <span class="gradient-text">Kavanagh Consulting</span>
+      </a>
+      <div class="flex items-center">
+        <nav class="hidden md:flex space-x-8 items-center" aria-label="Main navigation">
+          <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition font-medium">About</a>
+          <a href="#services" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition font-medium">Services</a>
+          <a href="#clients" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition font-medium">Clients</a>
+          <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition font-medium">Contact</a>
+          <a href="#under-our-tree" class="bg-gradient-to-r from-emerald-500 to-emerald-300 text-white px-6 py-2 rounded-button font-medium shadow hover:shadow-lg transition whitespace-nowrap ml-2 hover:from-emerald-600 hover:to-emerald-400">Our Projects</a>
+          <a href="#contact" class="btn-gradient text-white px-6 py-2 rounded-button font-medium shadow hover:shadow-lg transition whitespace-nowrap ml-2">Let's Talk</a>
+        </nav>
+        <button id="themeToggle" aria-label="Toggle Light Mode" class="p-2 rounded-full border border-gray-300 dark:border-gray-600 ml-4 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-secondary transition-colors">
+          <i class="ri-sun-line text-gray-700 dark:text-gray-300 hidden" aria-hidden="true"></i>
+          <i class="ri-moon-line text-gray-700 dark:text-gray-300 block" aria-hidden="true"></i>
+        </button>
+        <div class="md:hidden ml-4">
+          <button id="mobile-menu-button" aria-label="Open Mobile Menu" aria-expanded="false" aria-controls="mobile-menu" class="text-gray-700 dark:text-gray-300">
+            <i class="ri-menu-line ri-2x" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-800 shadow-lg absolute w-full top-full left-0 z-40">
+      <nav class="container mx-auto px-6 py-4 flex flex-col space-y-4" aria-label="Mobile navigation">
+        <a href="#about" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition font-medium">About</a>
+        <a href="#services" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition font-medium">Services</a>
+        <a href="#clients" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition font-medium">Clients</a>
+        <a href="#contact" class="block py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-secondary transition font-medium">Contact</a>
+        <a href="#under-our-tree" class="block mt-2 bg-gradient-to-r from-emerald-500 to-emerald-300 text-white px-6 py-3 rounded-button font-medium shadow hover:shadow-lg transition text-center hover:from-emerald-600 hover:to-emerald-400">Our Projects</a>
+        <a href="#contact" class="block mt-2 btn-gradient text-white px-6 py-3 rounded-button font-medium shadow hover:shadow-lg transition text-center">Let's Talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="text-gray-800 dark:text-gray-200">
+
+    <!-- 1. Hero Section (Light Mode Base: White (via body), Dark Mode Base: Slate 900 (via body)) -->
+    <section id="hero" aria-labelledby="hero-heading" class="relative w-full min-h-screen flex items-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');">
+      <div class="animated-bg" aria-hidden="true"> <div class="shape"></div> <div class="shape"></div> <div class="shape"></div> </div>
+      <div class="absolute inset-0 bg-gradient-to-r from-white/80 via-white/70 to-white/10 dark:from-slate-900/80 dark:via-slate-900/70 dark:to-slate-900/10"></div>
+      <div class="container mx-auto px-6 py-24 flex flex-col md:flex-row items-center relative z-10">
+        <div class="w-full md:w-3/5 mb-10 md:mb-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md p-8 sm:p-10 rounded-xl shadow-2xl">
+          <h1 id="hero-heading" class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white"> <span class="gradient-text">Disrupt.</span> Transform. <span class="gradient-text">Innovate.</span> </h1>
+          <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 max-w-xl">Pioneering business strategy and leadership innovation across Southeast Asia's most dynamic markets and beyond.</p>
+          <p class="text-gray-700 dark:text-gray-300 mb-8">Whether you're a startup founder or an established brand, we help you navigate Southeast Asia’s evolving business landscape with strategies that deliver real results.</p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#contact" class="btn-gradient text-white px-8 py-3 rounded-button text-lg font-medium shadow-lg text-center">Drive Your Growth</a>
+            <a href="#services" class="btn-outline px-8 py-3 rounded-button text-lg font-medium text-center">Explore Our Services</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Stats Section (Light Mode: Light Gray, Dark Mode: Slate 800) -->
+    <section id="stats" aria-labelledby="stats-heading" class="py-16 bg-slate-100 dark:bg-slate-800">
+      <div class="container mx-auto px-6">
+        <h2 id="stats-heading" class="sr-only">Our Achievements</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="stats-card bg-white dark:bg-slate-700 p-8 rounded-xl shadow-lg dark:shadow-slate-600/50 text-center"> <p class="text-4xl font-bold gradient-text mb-2">10+</p> <p class="text-gray-700 dark:text-gray-300">Years in Southeast Asia</p> </div>
+          <div class="stats-card bg-white dark:bg-slate-700 p-8 rounded-xl shadow-lg dark:shadow-slate-600/50 text-center"> <p class="text-4xl font-bold gradient-text mb-2">100+</p> <p class="text-gray-700 dark:text-gray-300">Businesses Transformed</p> </div>
+          <div class="stats-card bg-white dark:bg-slate-700 p-8 rounded-xl shadow-lg dark:shadow-slate-600/50 text-center"> <p class="text-4xl font-bold gradient-text mb-2">150%+</p> <p class="text-gray-700 dark:text-gray-300">Avg. Client Growth</p> </div>
+          <div class="stats-card bg-white dark:bg-slate-700 p-8 rounded-xl shadow-lg dark:shadow-slate-600/50 text-center"> <p class="text-4xl font-bold gradient-text mb-2">6</p> <p class="text-gray-700 dark:text-gray-300">Regional Hubs Supported</p> </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Services Section (Light Mode: White, Dark Mode: Slate 900) -->
+    <section id="services" aria-labelledby="services-heading" class="py-16 md:py-20 bg-white dark:bg-slate-900">
+      <div class="container mx-auto px-6">
+        <h2 id="services-heading" class="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-2">Our Core Services</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+        <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-12 md:mb-16 max-w-2xl mx-auto"> Tailored solutions designed to empower your business across Southeast Asia’s dynamic markets. </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <article class="service-card bg-white dark:bg-slate-800 p-6 md:p-8 rounded-xl border-2 border-primary dark:border-secondary shadow-lg hover:shadow-xl dark:hover:shadow-secondary/30 transition-all duration-300 flex flex-col items-center text-center group"> <div class="w-20 h-20 bg-blue-100 dark:bg-primary/10 rounded-full flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-primary/20 dark:group-hover:bg-secondary/20"> <i class="ri-briefcase-fill ri-3x text-primary dark:text-secondary transition-colors duration-300 group-hover:text-blue-700 dark:group-hover:text-orange-400" aria-hidden="true"></i> </div> <h3 class="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3">Business Development</h3> <p class="text-gray-700 dark:text-gray-300 mb-6 max-w-xs text-sm md:text-base flex-grow">Unlock new growth opportunities with strategic market analysis and sales acceleration across diverse Southeast Asian markets.</p> <a href="#contact" class="mt-auto text-primary dark:text-secondary font-semibold flex items-center group-hover:text-blue-700 dark:group-hover:text-orange-400 transition-colors duration-300 group-hover:underline">Discuss Your Needs <i class="ri-arrow-right-line ml-1 transform transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i></a> </article>
+          <article class="service-card bg-white dark:bg-slate-800 p-6 md:p-8 rounded-xl border-2 border-primary dark:border-secondary shadow-lg hover:shadow-xl dark:hover:shadow-secondary/30 transition-all duration-300 flex flex-col items-center text-center group"> <div class="w-20 h-20 bg-blue-100 dark:bg-primary/10 rounded-full flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-primary/20 dark:group-hover:bg-secondary/20"> <i class="ri-user-voice-fill ri-3x text-primary dark:text-secondary transition-colors duration-300 group-hover:text-blue-700 dark:group-hover:text-orange-400" aria-hidden="true"></i> </div> <h3 class="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3">Support Coaching</h3> <p class="text-gray-700 dark:text-gray-300 mb-6 max-w-xs text-sm md:text-base flex-grow">Empower your team and leaders with culturally-attuned coaching to boost confidence and leadership across regional markets.</p> <a href="#contact" class="mt-auto text-primary dark:text-secondary font-semibold flex items-center group-hover:text-blue-700 dark:group-hover:text-orange-400 transition-colors duration-300 group-hover:underline">Elevate Your Team <i class="ri-arrow-right-line ml-1 transform transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i></a> </article>
+          <article class="service-card bg-white dark:bg-slate-800 p-6 md:p-8 rounded-xl border-2 border-primary dark:border-secondary shadow-lg hover:shadow-xl dark:hover:shadow-secondary/30 transition-all duration-300 flex flex-col items-center text-center group"> <div class="w-20 h-20 bg-blue-100 dark:bg-primary/10 rounded-full flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-primary/20 dark:group-hover:bg-secondary/20"> <i class="ri-mic-2-fill ri-3x text-primary dark:text-secondary transition-colors duration-300 group-hover:text-blue-700 dark:group-hover:text-orange-400" aria-hidden="true"></i> </div> <h3 class="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3">MC & Event Hosting</h3> <p class="text-gray-700 dark:text-gray-300 mb-6 max-w-xs text-sm md:text-base flex-grow">Engage and inspire audiences with professional hosting, tailored for Southeast Asia’s diverse cultural nuances.</p> <a href="#contact" class="mt-auto text-primary dark:text-secondary font-semibold flex items-center group-hover:text-blue-700 dark:group-hover:text-orange-400 transition-colors duration-300 group-hover:underline">Book an Event <i class="ri-arrow-right-line ml-1 transform transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i></a> </article>
+          <article class="service-card bg-white dark:bg-slate-800 p-6 md:p-8 rounded-xl border-2 border-primary dark:border-secondary shadow-lg hover:shadow-xl dark:hover:shadow-secondary/30 transition-all duration-300 flex flex-col items-center text-center group"> <div class="w-20 h-20 bg-blue-100 dark:bg-primary/10 rounded-full flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-primary/20 dark:group-hover:bg-secondary/20"> <i class="ri-palette-fill ri-3x text-primary dark:text-secondary transition-colors duration-300 group-hover:text-blue-700 dark:group-hover:text-orange-400" aria-hidden="true"></i> </div> <h3 class="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3">Brand Strategy</h3> <p class="text-gray-700 dark:text-gray-300 mb-6 max-w-xs text-sm md:text-base flex-grow">Craft authentic brands and compelling narratives that resonate deeply with Southeast Asian consumers and drive loyalty.</p> <a href="#contact" class="mt-auto text-primary dark:text-secondary font-semibold flex items-center group-hover:text-blue-700 dark:group-hover:text-orange-400 transition-colors duration-300 group-hover:underline">Define Your Brand <i class="ri-arrow-right-line ml-1 transform transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i></a> </article>
+          <article class="service-card bg-white dark:bg-slate-800 p-6 md:p-8 rounded-xl border-2 border-primary dark:border-secondary shadow-lg hover:shadow-xl dark:hover:shadow-secondary/30 transition-all duration-300 flex flex-col items-center text-center group"> <div class="w-20 h-20 bg-blue-100 dark:bg-primary/10 rounded-full flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-primary/20 dark:group-hover:bg-secondary/20"> <i class="ri-lightbulb-flash-fill ri-3x text-primary dark:text-secondary transition-colors duration-300 group-hover:text-blue-700 dark:group-hover:text-orange-400" aria-hidden="true"></i> </div> <h3 class="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3">Strategic Problem Solving</h3> <p class="text-gray-700 dark:text-gray-300 mb-6 max-w-xs text-sm md:text-base flex-grow">Deliver creative, data-driven solutions to complex business challenges that unlock potential and drive measurable impact.</p> <a href="#contact" class="mt-auto text-primary dark:text-secondary font-semibold flex items-center group-hover:text-blue-700 dark:group-hover:text-orange-400 transition-colors duration-300 group-hover:underline">Solve a Challenge <i class="ri-arrow-right-line ml-1 transform transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i></a> </article>
+          <article class="service-card bg-white dark:bg-slate-800 p-6 md:p-8 rounded-xl border-2 border-primary dark:border-secondary shadow-lg hover:shadow-xl dark:hover:shadow-secondary/30 transition-all duration-300 flex flex-col items-center text-center group"> <div class="w-20 h-20 bg-blue-100 dark:bg-primary/10 rounded-full flex items-center justify-center mb-6 transition-colors duration-300 group-hover:bg-primary/20 dark:group-hover:bg-secondary/20"> <i class="ri-shake-hands-fill ri-3x text-primary dark:text-secondary transition-colors duration-300 group-hover:text-blue-700 dark:group-hover:text-orange-400" aria-hidden="true"></i> </div> <h3 class="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white mb-3">M&A Advisory</h3> <p class="text-gray-700 dark:text-gray-300 mb-6 max-w-xs text-sm md:text-base flex-grow">Navigate complex mergers and acquisitions with expert guidance to maximize value and ensure seamless integration in SEA markets.</p> <a href="#contact" class="mt-auto text-primary dark:text-secondary font-semibold flex items-center group-hover:text-blue-700 dark:group-hover:text-orange-400 transition-colors duration-300 group-hover:underline">Explore M&A <i class="ri-arrow-right-line ml-1 transform transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></i></a> </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. About Section (Light Mode: Light Gray, Dark Mode: Slate 800) -->
+    <section id="about" aria-labelledby="about-us-heading" class="py-16 md:py-20 bg-slate-100 dark:bg-slate-800">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-center lg:gap-x-12">
+          <div class="w-full lg:w-5/12 mb-10 lg:mb-0">
+            <div class="relative max-w-md mx-auto lg:mx-0">
+              <div class="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-20 h-20 sm:w-24 sm:h-24 bg-primary/10 dark:bg-secondary/10 rounded-lg z-0 transition-all duration-300" aria-hidden="true"></div>
+              <div class="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-20 h-20 sm:w-24 sm:h-24 bg-secondary/10 dark:bg-primary/10 rounded-lg z-0 transition-all duration-300" aria-hidden="true"></div>
+              <img loading="lazy" alt="Sam Kavanagh, Founder of Kavanagh Consulting" class="rounded-xl shadow-xl w-full relative z-10" src="assets/sam-kavanagh.jpg" />
+            </div>
+          </div>
+          <div class="w-full lg:w-7/12 lg:pl-8 text-center lg:text-left">
+            <h2 id="about-us-heading" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3"> Meet Sam Kavanagh: <span class="block sm:inline">Driving Your <span class="gradient-text">Innovation</span></span> </h2>
+            <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mb-6 mx-auto lg:mx-0"></div>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6"> Kavanagh Consulting is spearheaded by Sam Kavanagh — a seasoned consultant, coach, and builder with a unique ability to cut through complexity with calm and clarity. With over a decade of experience spanning strategy, creative direction, people development, and operations across diverse cultures from Southeast Asia to Europe, Sam offers a holistic perspective, quickly identifying core challenges and strategic pathways. </p>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-6"> Our philosophy is simple: we don't believe in one-size-fits-all systems. We partner with you to foster clear insights, elevate your capabilities, and build what’s next — driving forward with clarity, confidence, and sustained momentum. </p>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-8"> Whether you’re scaling a company, navigating a career transition, or refining your brand's voice, our approach is always practical, human-centric, and designed to integrate seamlessly with your vision, not against it. </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a href="#contact" class="btn-gradient text-white px-8 py-3 rounded-button text-lg font-medium shadow-lg text-center"> Start a Conversation </a>
+              <a href="#approach" class="btn-outline px-8 py-3 rounded-button text-lg font-medium text-center"> Discover Our Approach </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Clients Carousel Section (Light Mode: White, Dark Mode: Slate 900) -->
+    <section id="clients" aria-labelledby="clients-heading" class="py-16 bg-white dark:bg-slate-900">
+      <div class="container mx-auto px-6">
+        <h2 id="clients-heading" class="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">Trusted By Industry Leaders</h2>
+        <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-12 max-w-2xl mx-auto">Partnering with visionary brands & organisations across Southeast Asia</p>
+        <div class="swiper client-swiper relative" role="region" aria-label="Client Logos">
+          <div class="swiper-wrapper items-center">
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://rbsinternational.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/rbsi.jpeg" alt="RBSI logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">RBSI</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Offshore banking, wealth management, corporate finance services.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://www.tripadvisor.co.uk/Attraction_Review-g303907-d1972156-Reviews-Asia_Blue_Scuba-Ko_Pha_Ngan_Surat_Thani_Province.html" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/asia.jpg" alt="Asia Blue Scuba logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Asia Blue Scuba</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Scuba diving tours, training, equipment rentals.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://brooketrust.org" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/brooke.png" alt="The Brooke Trust logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">The Brooke Trust</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Preserving Brooke family’s Sarawak historical legacy.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://brookemuseums.org" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/brookem.jpg" alt="Brooke Museums logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Brooke Museums</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Exhibiting Brooke dynasty’s Sarawak cultural heritage.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://bluesquare.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/bsquare.jpeg" alt="Blue Square logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Blue Square</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Property leasing, coworking spaces, real estate management.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://colugocandles.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/candles.jpg" alt="Colugo Candles logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Colugo Candles</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Handcrafted scented candles, sustainable home decor.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://www.projectborneo.org/copy-of-monkee-bar" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/monkee.jpg" alt="Monkee Bar logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Monkee Bar</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Casual bar, drinks, food, social atmosphere.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://projectborneo.org" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/pb.jpg" alt="Project Borneo logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Project Borneo</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Ecotourism, conservation, sustainable travel in Borneo.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://qrospay.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/qros.jpg" alt="QROS Pay logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">QROS Pay</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Digital payment systems, merchant transaction solutions.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://santander.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/santan.png" alt="Santander logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Santander</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Global banking, mortgages, loans, wealth management.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://rafflesiaresort.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/rafflesia.jpg" alt="Rafflesia Resort logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Rafflesia Resort</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Tropical resort, lodging, dining, recreational activities.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://gov.je" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/soj.jpeg" alt="States of Jersey logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">States of Jersey</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Jersey government, public policy, community services.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://c5alliance.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/c5.jpeg" alt="C5 Alliance logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">C5 Alliance</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">IT consulting, cybersecurity, cloud solutions.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://advancetowork.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/ATW.png" alt="Advance to Work logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Advance to Work</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Job training, skills development, employment placement.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://marketingaskola.lv/" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/ma.png" alt="Marketing Askola logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Marketing Askola</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Digital marketing training, SEO, social media consultancy.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://ezragrowth.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/ezra.jpg" alt="Ezra Growth logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Ezra Growth</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Business consulting, growth strategies for startups.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://lccapital.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/lc.jpeg" alt="LC Capital logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">LC Capital</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Venture capital, startup investment, strategic guidance.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://outpostbarhostel.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/outpost.jpg" alt="Outpost Bar & Hostel logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Outpost Bar & Hostel</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Budget hostel, bar, backpacker accommodations.</p> </div>
+            <div class="swiper-slide flex flex-col items-center text-center p-2"> <a href="https://southsidebistro.com" target="_blank" rel="noopener noreferrer" class="group"> <figure> <img loading="lazy" src="assets/ss.jpg" alt="Southside Bistro logo" class="w-20 h-20 rounded-full object-contain bg-white dark:bg-transparent p-2 shadow-sm mb-2 mx-auto group-hover:shadow-lg transition-shadow duration-300" /> <figcaption class="text-gray-700 dark:text-gray-300 text-sm font-semibold group-hover:text-primary dark:group-hover:text-secondary transition-colors duration-300">Southside Bistro</figcaption> </figure> </a> <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 max-w-[140px] mx-auto">Casual dining, contemporary cuisine, local ingredients.</p> </div>
+          </div>
+          <div class="swiper-button-next" aria-label="Next client"></div>
+          <div class="swiper-button-prev" aria-label="Previous client"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Approach Section (Timeline) (Light Mode: Light Gray, Dark Mode: Slate 800) -->
+    <section id="approach" aria-labelledby="approach-heading" class="py-16 bg-slate-100 dark:bg-slate-800">
+      <div class="container mx-auto px-6">
+        <h2 id="approach-heading" class="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-2">Our Unique Approach</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+        <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-16 max-w-2xl mx-auto">A dynamic, 5-step methodology designed for rapid transformation and sustainable results, tailored to your unique context.</p>
+        <ol class="relative flex flex-col md:flex-row md:justify-between md:gap-x-4 lg:gap-x-8">
+          <li class="timeline-list-item relative flex-1 text-center px-2 md:px-4 mb-12 md:mb-0"> <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4 relative z-10" aria-hidden="true">1</div> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Disrupt</h3> <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Challenge assumptions and identify hidden opportunities through deep-dive analysis.</p> </li>
+          <li class="timeline-list-item relative flex-1 text-center px-2 md:px-4 mb-12 md:mb-0"> <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4 relative z-10" aria-hidden="true">2</div> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Decode</h3> <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Analyze market dynamics, cultural contexts, and your unique business DNA.</p> </li>
+          <li class="timeline-list-item relative flex-1 text-center px-2 md:px-4 mb-12 md:mb-0"> <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4 relative z-10" aria-hidden="true">3</div> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Design</h3> <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Co-create innovative strategies, actionable frameworks, and clear roadmaps.</p> </li>
+          <li class="timeline-list-item relative flex-1 text-center px-2 md:px-4 mb-12 md:mb-0"> <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4 relative z-10" aria-hidden="true">4</div> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Deploy</h3> <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Implement with agility, cultural intelligence, and hands-on support.</p> </li>
+          <li class="timeline-list-item relative flex-1 text-center px-2 md:px-4"> <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4 relative z-10" aria-hidden="true">5</div> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Drive</h3> <p class="text-gray-700 dark:text-gray-300 text-sm md:text-base">Accelerate growth, build sustainable momentum, and empower your team.</p> </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 7. Success Stories Carousel Section (Light Mode: White, Dark Mode: Slate 900) -->
+    <section id="success-stories" aria-labelledby="success-stories-heading" class="py-16 bg-white dark:bg-slate-900">
+      <div class="container mx-auto px-6">
+        <h2 id="success-stories-heading" class="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-2">Proven Impact: Success Stories</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+        <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-16 max-w-2xl mx-auto">Real transformations and tangible results delivered for our partners across Southeast Asia.</p>
+        <div class="swiper success-stories-swiper relative" role="region" aria-label="Success Stories">
+          <div class="swiper-wrapper pb-4">
+            <article class="swiper-slide bg-white dark:bg-slate-800 rounded-xl shadow-xl dark:shadow-slate-700/50 overflow-hidden h-full flex flex-col group"> <a href="https://www.projectborneo.org" target="_blank" rel="noopener noreferrer" class="block"> <img loading="lazy" alt="Orangutan in tree, representing Project Borneo" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300" src="assets/pb.jpg" /> </a> <div class="p-6 flex flex-col flex-grow"> <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full dark:bg-green-700 dark:text-green-100 self-start mb-3">Animal Welfare</span> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Project Borneo: Protecting Wildlife</h3> <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">A community-driven initiative safeguarding endangered species and promoting sustainable coexistence.</p> <a href="https://www.projectborneo.org" target="_blank" rel="noopener noreferrer" class="text-green-600 dark:text-green-400 font-medium flex items-center hover:text-green-800 dark:hover:text-green-200 transition-colors duration-300 self-start group-hover:underline"> Visit Project <i class="ri-arrow-right-line ml-1 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true"></i> </a> </div> </article>
+            <article class="swiper-slide bg-white dark:bg-slate-800 rounded-xl shadow-xl dark:shadow-slate-700/50 overflow-hidden h-full flex flex-col group"> <a href="https://www.qrospay.com/" target="_blank" rel="noopener noreferrer" class="block"> <img loading="lazy" alt="Smartphone showing Qrospay interface" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300" src="assets/qros.jpg" /> </a> <div class="p-6 flex flex-col flex-grow"> <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full dark:bg-blue-700 dark:text-blue-100 self-start mb-3">Fintech</span> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Qrospay: Seamless Payments</h3> <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Boosted user engagement and expanded market reach across Southeast Asia.</p> <a href="https://www.qrospay.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 font-medium flex items-center hover:text-blue-800 dark:hover:text-blue-200 transition-colors duration-300 self-start group-hover:underline"> Visit Qrospay <i class="ri-arrow-right-line ml-1 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true"></i> </a> </div> </article>
+            <article class="swiper-slide bg-white dark:bg-slate-800 rounded-xl shadow-xl dark:shadow-slate-700/50 overflow-hidden h-full flex flex-col group"> <a href="https://www.facebook.com/gesausages/" target="_blank" rel="noopener noreferrer" class="block"> <img loading="lazy" alt="Artisan sausages displayed" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300" src="assets/okto.jpeg" /> </a> <div class="p-6 flex flex-col flex-grow"> <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full dark:bg-red-700 dark:text-red-100 self-start mb-3">Food Production</span> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">GE Sausages: Premium Quality</h3> <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Expanded premium product line and enhanced supply chain efficiency.</p> <a href="https://www.facebook.com/gesausages/" target="_blank" rel="noopener noreferrer" class="text-red-600 dark:text-red-400 font-medium flex items-center hover:text-red-800 dark:hover:text-red-200 transition-colors duration-300 self-start group-hover:underline"> Visit GE Sausages <i class="ri-arrow-right-line ml-1 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true"></i> </a> </div> </article>
+            <article class="swiper-slide bg-white dark:bg-slate-800 rounded-xl shadow-xl dark:shadow-slate-700/50 overflow-hidden h-full flex flex-col group"> <a href="#" class="block"> <img loading="lazy" alt="Modern office building representing RBSI" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300" src="assets/DOMC.jpeg" /> </a> <div class="p-6 flex flex-col flex-grow"> <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs font-semibold rounded-full dark:bg-yellow-600 dark:text-yellow-100 self-start mb-3">Finance</span> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">RBSI: Operational Management</h3> <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Reduced inefficiencies by 32% and increased reporting transparency by 45%.</p> <a href="#" class="text-yellow-600 dark:text-yellow-400 font-medium flex items-center hover:text-yellow-800 dark:hover:text-yellow-200 transition-colors duration-300 self-start group-hover:underline"> View Project <i class="ri-arrow-right-line ml-1 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true"></i> </a> </div> </article>
+            <article class="swiper-slide bg-white dark:bg-slate-800 rounded-xl shadow-xl dark:shadow-slate-700/50 overflow-hidden h-full flex flex-col group"> <a href="#" class="block"> <img loading="lazy" alt="Fiber optic cables representing JT Gigabit project" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300" src="assets/giga.jpeg" /> </a> <div class="p-6 flex flex-col flex-grow"> <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full dark:bg-indigo-700 dark:text-indigo-100 self-start mb-3">Telecom</span> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">JT: Gigabit Jersey Fibre Rollout</h3> <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Delivered island-wide high-speed broadband, reaching 100% coverage.</p> <a href="#" class="text-indigo-600 dark:text-indigo-400 font-medium flex items-center hover:text-indigo-800 dark:hover:text-indigo-200 transition-colors duration-300 self-start group-hover:underline"> View Case <i class="ri-arrow-right-line ml-1 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true"></i> </a> </div> </article>
+            <article class="swiper-slide bg-white dark:bg-slate-800 rounded-xl shadow-xl dark:shadow-slate-700/50 overflow-hidden h-full flex flex-col group"> <a href="https://brookegallery.org" target="_blank" rel="noopener noreferrer" class="block"> <img loading="lazy" alt="Interior of Ranee Museum" class="w-full h-56 object-cover object-center group-hover:scale-105 transition-transform duration-300" src="assets/ranee.jpeg" /> </a> <div class="p-6 flex flex-col flex-grow"> <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full dark:bg-purple-700 dark:text-purple-100 self-start mb-3">Culture & Heritage</span> <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Brooke Museums: Ranee Museum Launch</h3> <p class="text-gray-700 dark:text-gray-300 text-sm mb-4 flex-grow">Launched Ranee Museum with 20,000+ visitors in the first quarter.</p> <a href="https://brookegallery.org" target="_blank" rel="noopener noreferrer" class="text-purple-600 dark:text-purple-400 font-medium flex items-center hover:text-purple-800 dark:hover:text-purple-200 transition-colors duration-300 self-start group-hover:underline"> Visit Museum <i class="ri-arrow-right-line ml-1 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true"></i> </a> </div> </article>
+          </div>
+          <div class="swiper-button-next" aria-label="Next success story"></div>
+          <div class="swiper-button-prev" aria-label="Previous success story"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Testimonials Section (Light Mode: Light Gray, Dark Mode: Slate 800) -->
+    <section id="testimonials" aria-labelledby="testimonials-heading" class="py-16 bg-slate-100 dark:bg-slate-800">
+      <div class="container mx-auto px-6">
+        <h2 id="testimonials-heading" class="text-3xl md:text-4xl font-bold text-center text-gray-900 dark:text-white mb-2">What Our Clients Say</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+        <p class="text-lg text-center text-gray-700 dark:text-gray-300 mb-12 max-w-2xl mx-auto">Hear directly from leaders who've experienced transformative results with Kavanagh Consulting.</p>
+        <div class="relative px-0 sm:px-8 md:px-12 testimonial-carousel-wrapper"> <!-- Added wrapper for arrow positioning context -->
+          <div id="testimonials-container" class="testimonial-container flex overflow-x-auto pb-4 -mx-4 px-4">
+            <div class="testimonial-card flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4" role="group" aria-roledescription="slide" aria-label="Testimonial 1 of 6"> <div class="bg-white dark:bg-slate-700 p-8 rounded-xl shadow-xl dark:shadow-slate-600/50 h-full flex flex-col"> <i class="ri-double-quotes-l ri-2x text-primary dark:text-secondary mb-4 self-start" aria-hidden="true"></i> <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow text-sm md:text-base"> <p>“Working with Sam was a reset for me. He never pushed a formula—he created space. Through our sessions, I was able to reconnect with why I create and how I want to show up in the world. The clarity I walked away with wasn’t just professional—it was personal.”</p> </blockquote> <figure class="flex items-center gap-4 mt-auto"> <img loading="lazy" src="assets/sophie-trinh.jpg" alt="Sophie Trinh" class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full shadow"/> <figcaption> <h4 class="font-semibold text-gray-900 dark:text-white text-sm md:text-base">Sophie Trinh</h4> <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Artist & Curator, Hanoi</p> </figcaption> </figure> </div> </div>
+            <div class="testimonial-card flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4" role="group" aria-roledescription="slide" aria-label="Testimonial 2 of 6"> <div class="bg-white dark:bg-slate-700 p-8 rounded-xl shadow-xl dark:shadow-slate-600/50 h-full flex flex-col"> <i class="ri-double-quotes-l ri-2x text-primary dark:text-secondary mb-4 self-start" aria-hidden="true"></i> <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow text-sm md:text-base"> <p>“We brought Sam in during a moment of growth and pressure. What stood out was his calm and clarity—he didn’t just give advice, he asked the right questions. Our team got realigned, our decision-making got sharper, and we felt more like leaders again.”</p> </blockquote> <figure class="flex items-center gap-4 mt-auto"> <img loading="lazy" alt="Adam & Ben" src="assets/op2.png" class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full shadow"/> <figcaption> <h4 class="font-semibold text-gray-900 dark:text-white text-sm md:text-base">Adam &amp; Ben</h4> <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Founders, The Outpost Da Nang</p> </figcaption> </figure> </div> </div>
+            <div class="testimonial-card flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4" role="group" aria-roledescription="slide" aria-label="Testimonial 3 of 6"> <div class="bg-white dark:bg-slate-700 p-8 rounded-xl shadow-xl dark:shadow-slate-600/50 h-full flex flex-col"> <i class="ri-double-quotes-l ri-2x text-primary dark:text-secondary mb-4 self-start" aria-hidden="true"></i> <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow text-sm md:text-base"> <p>“Sam helped us cut through the noise and actually start building. His coaching style is no-fluff but deeply supportive. Toadbase wouldn’t be where it is without the structure and clarity he helped us find in the early stages.”</p> </blockquote> <figure class="flex items-center gap-4 mt-auto"> <img loading="lazy" alt="Scott M." src="https://via.placeholder.com/150/CBD5E0/4A5568?text=SM" class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full shadow"/> <figcaption> <h4 class="font-semibold text-gray-900 dark:text-white text-sm md:text-base">Scott M.</h4> <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Co-Founder, Toadbase</p> </figcaption> </figure> </div> </div>
+            <div class="testimonial-card flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4" role="group" aria-roledescription="slide" aria-label="Testimonial 4 of 6"> <div class="bg-white dark:bg-slate-700 p-8 rounded-xl shadow-xl dark:shadow-slate-600/50 h-full flex flex-col"> <i class="ri-double-quotes-l ri-2x text-primary dark:text-secondary mb-4 self-start" aria-hidden="true"></i> <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow text-sm md:text-base"> <p>“What started as a few coaching sessions turned into a complete creative realignment. Sam helped me unpack the story I’d been telling—and reframe it into something that finally felt true to where I was going. I’ve since launched projects with more clarity, confidence, and conviction.”</p> </blockquote> <figure class="flex items-center gap-4 mt-auto"> <img loading="lazy" alt="Ricard Vallejo" src="assets/ricardo.jpg" class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full shadow"/> <figcaption> <h4 class="font-semibold text-gray-900 dark:text-white text-sm md:text-base">Ricard Vallejo</h4> <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Creative Director</p> </figcaption> </figure> </div> </div>
+            <div class="testimonial-card flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4" role="group" aria-roledescription="slide" aria-label="Testimonial 5 of 6"> <div class="bg-white dark:bg-slate-700 p-8 rounded-xl shadow-xl dark:shadow-slate-600/50 h-full flex flex-col"> <i class="ri-double-quotes-l ri-2x text-primary dark:text-secondary mb-4 self-start" aria-hidden="true"></i> <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow text-sm md:text-base"> <p>“Sam has this way of seeing the heart of a creative idea and giving it structure without losing its soul. Working with him helped us refine what Breakfast Bite stood for and communicate it more clearly to partners, press, and community. The impact on our confidence—and our brand—was real.”</p> </blockquote> <figure class="flex items-center gap-4 mt-auto"> <img loading="lazy" alt="Robert & Cheryl" src="https://via.placeholder.com/150/A0AEC0/2D3748?text=R%26C" class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full shadow"/> <figcaption> <h4 class="font-semibold text-gray-900 dark:text-white text-sm md:text-base">Robert &amp; Cheryl</h4> <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Co-Founders, Breakfast Bite</p> </figcaption> </figure> </div> </div>
+            <div class="testimonial-card flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 p-4" role="group" aria-roledescription="slide" aria-label="Testimonial 6 of 6"> <div class="bg-white dark:bg-slate-700 p-8 rounded-xl shadow-xl dark:shadow-slate-600/50 h-full flex flex-col"> <i class="ri-double-quotes-l ri-2x text-primary dark:text-secondary mb-4 self-start" aria-hidden="true"></i> <blockquote class="text-gray-700 dark:text-gray-300 mb-6 flex-grow text-sm md:text-base"> <p>"I have tried a few "Coaches" in my life, and Sam is one of the few ones I feel like I'm getting my money's worth from. I have been working with him for about 3 months now and I feel like he's very knowledgeable and he can look at the situation from an eagle-eye's point of view. I like that similarly to me he is quick with coming up with new ideas, but unlike me he can immediately come up with 10x ways how to actually get them done. I recommend Sam to anyone who is bit lost in what he wants to do business or career-wise, or to prioritize and organize the current processes"</p> </blockquote> <figure class="flex items-center gap-4 mt-auto"> <img loading="lazy" alt="Rihards Gailums" src="assets/rihards.jpg" class="w-12 h-12 md:w-14 md:h-14 object-cover rounded-full shadow"/> <figcaption> <h4 class="font-semibold text-gray-900 dark:text-white text-sm md:text-base">Rihards Z.</h4> <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400">Founder, Marketing Eskola (Latvia)</p> </figcaption> </figure> </div> </div>
+          </div>
+          <div id="testimonial-dots" class="flex justify-center mt-8 space-x-2" role="tablist" aria-label="Testimonial navigation dots"></div>
+          <button id="prev-testimonial" aria-label="Previous testimonial" class="swiper-button-prev absolute top-1/2 transform -translate-y-1/2 z-10 disabled:opacity-50 disabled:cursor-not-allowed"> <i class="ri-arrow-left-s-line ri-lg" aria-hidden="true"></i> </button>
+          <button id="next-testimonial" aria-label="Next testimonial" class="swiper-button-next absolute top-1/2 transform -translate-y-1/2 z-10 disabled:opacity-50 disabled:cursor-not-allowed"> <i class="ri-arrow-right-s-line ri-lg" aria-hidden="true"></i> </button>
+        </div>
+{{ ... }}
+    </section>
+
+    <!-- 9. Main CTA Section (Light Mode: White, Dark Mode: Slate 900) -->
+    <section id="cta-transform" aria-labelledby="cta-transform-heading" class="py-16 md:py-20 bg-white dark:bg-slate-900">
+      <div class="container mx-auto px-6 text-center">
+        <h2 id="cta-transform-heading" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"> Ready to <span class="gradient-text">Ignite</span> Your Growth? </h2>
+        <p class="text-lg text-gray-700 dark:text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto"> Let's explore how Kavanagh Consulting can help you navigate challenges, unlock opportunities, and achieve sustainable growth in Southeast Asia and beyond. </p>
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-lg mx-auto">
+            <a href="#contact" class="btn-gradient text-white px-8 py-3 rounded-button text-lg font-medium shadow-lg w-full sm:w-auto text-center"> Schedule a Discovery Call </a>
+            <a href="#services" class="btn-outline px-8 py-3 rounded-button text-lg font-medium w-full sm:w-auto text-center"> Review Our Services </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Contact Buttons Section (Light Mode: Light Gray, Dark Mode: Slate 800) -->
+    <section id="contact" aria-labelledby="contact-heading" class="py-16 bg-slate-100 dark:bg-slate-800 px-6 text-center">
+      <h2 id="contact-heading" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-5">Connect With Us Directly</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 mb-10 max-w-xl mx-auto">We're ready to listen and discuss how we can tailor our approach to your unique needs. Reach out via your preferred method:</p>
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+        <a href="mailto:sam@kavsulting.com?subject=Inquiry%20from%20Website" class="btn-contact btn-contact-email text-white font-medium px-6 py-3 rounded-button shadow-md w-full sm:w-auto text-base flex items-center justify-center space-x-2"> <i class="ri-mail-send-line" aria-hidden="true"></i> <span>Email Us</span> </a>
+        <a href="https://wa.me/84876036784?text=Hello%2C%20I'm%20interested%20in%20learning%20more%20about%20Kavanagh%20Consulting." target="_blank" rel="noopener noreferrer" class="btn-contact btn-contact-whatsapp text-white font-medium px-6 py-3 rounded-button shadow-md w-full sm:w-auto text-base flex items-center justify-center space-x-2"> <i class="ri-whatsapp-line" aria-hidden="true"></i> <span>Chat on WhatsApp</span> </a>
+        <a href="https://zalo.me/84876036784" target="_blank" rel="noopener noreferrer" class="btn-contact btn-contact-zalo text-white font-medium px-6 py-3 rounded-button shadow-md w-full sm:w-auto text-base flex items-center justify-center space-x-2"> <i class="ri-smartphone-line" aria-hidden="true"></i> <span>Connect on Zalo</span> </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Under Our Tree Section -->
+  <section id="under-our-tree" class="py-16 bg-white dark:bg-slate-900">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Under Our <span class="gradient-text">Tree</span>
+        </h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-6"></div>
+        <p class="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+          Discover the innovative platforms we've cultivated to empower creators and businesses.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-8 max-w-3xl mx-auto">
+        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Represent+</h3>
+        <p class="text-gray-600 dark:text-gray-300 mb-6">
+          A modern talent representation platform connecting businesses with exceptional creative professionals. 
+          Streamline your workflow with powerful tools for portfolio management, commission tracking, and 
+          client engagement—all in one intuitive platform.
+        </p>
+        <a href="/Representplus" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-button text-sm font-medium inline-flex items-center transition-colors duration-300">
+          Explore Platform
+          <i class="ri-arrow-right-line ml-2"></i>
+        </a>
+      </div>
+
+      <div class="mt-8 text-center">
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          <i class="ri-information-line mr-1.5"></i> More exciting platforms coming soon to the Kavanagh Consulting family
+        </p>
+      </div>
+    </div>
+  </section>
+
+    <footer class="bg-slate-800 dark:bg-black text-gray-300 dark:text-gray-400 py-12">
+    <div class="container mx-auto px-6 text-center">
+        <a href="#hero" class="text-xl font-bold mb-4 inline-block"> <span class="gradient-text">Kavanagh Consulting</span> </a>
+        <nav class="flex justify-center space-x-4 md:space-x-6 mb-6 text-sm md:text-base" aria-label="Footer navigation">
+            <a href="#about" class="hover:text-secondary transition-colors duration-300">About</a>
+            <a href="#services" class="hover:text-secondary transition-colors duration-300">Services</a>
+            <a href="#clients" class="hover:text-secondary transition-colors duration-300">Clients</a>
+            <a href="#contact" class="hover:text-secondary transition-colors duration-300">Contact</a>
+        </nav>
+        <div class="flex justify-center space-x-6 mb-6">
+            <a href="#" aria-label="Facebook" class="social-icon text-gray-400 hover:text-secondary transition-colors duration-300"><i class="ri-facebook-circle-fill ri-xl" aria-hidden="true"></i></a>
+            <a href="#" aria-label="LinkedIn" class="social-icon text-gray-400 hover:text-secondary transition-colors duration-300"><i class="ri-linkedin-box-fill ri-xl" aria-hidden="true"></i></a>
+            <a href="#" aria-label="Twitter" class="social-icon text-gray-400 hover:text-secondary transition-colors duration-300"><i class="ri-twitter-x-fill ri-xl" aria-hidden="true"></i></a>
+        </div>
+        <p class="text-sm">&copy; <span id="currentYear"></span> Kavanagh Consulting. All Rights Reserved.</p>
+        <p class="text-xs mt-1">Strategic Business Innovation in Southeast Asia.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script id="page-specific-scripts">
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('themeToggle');
+      const htmlElement = document.documentElement;
+      const sunIcon = themeToggle.querySelector('.ri-sun-line');
+      const moonIcon = themeToggle.querySelector('.ri-moon-line');
+
+      function applyTheme(isDarkMode) {
+        if (isDarkMode) {
+          htmlElement.classList.add('dark');
+          sunIcon.classList.add('hidden'); 
+          moonIcon.classList.remove('hidden');
+          themeToggle.setAttribute('aria-label', 'Toggle Light Mode');
+        } else {
+          htmlElement.classList.remove('dark');
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');   
+          themeToggle.setAttribute('aria-label', 'Toggle Dark Mode');
+        }
+      }
+      let isInitialDark = localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : htmlElement.classList.contains('dark');
+      applyTheme(isInitialDark);
+      if (!localStorage.getItem('theme')) { localStorage.setItem('theme', isInitialDark ? 'dark' : 'light'); }
+      themeToggle.addEventListener('click', () => { const isCurrentlyDark = htmlElement.classList.contains('dark'); applyTheme(!isCurrentlyDark); localStorage.setItem('theme', !isCurrentlyDark ? 'dark' : 'light'); });
+
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileMenuIcon = mobileMenuButton.querySelector('i');
+      mobileMenuButton.addEventListener('click', () => { const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true'; mobileMenuButton.setAttribute('aria-expanded', !isExpanded); mobileMenu.classList.toggle('hidden'); mobileMenuIcon.classList.toggle('ri-menu-line'); mobileMenuIcon.classList.toggle('ri-close-line'); });
+      mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenuButton.setAttribute('aria-expanded', 'false'); mobileMenu.classList.add('hidden'); mobileMenuIcon.classList.remove('ri-close-line'); mobileMenuIcon.classList.add('ri-menu-line'); }); });
+
+      const header = document.querySelector('.header-sticky');
+      const scrollThreshold = 50;
+      window.addEventListener('scroll', () => { if (window.scrollY > scrollThreshold) { header.classList.add('scrolled'); } else { header.classList.remove('scrolled'); } });
+
+      const clientSwiper = new Swiper('.client-swiper', { slidesPerView: 2, spaceBetween: 16, loop: true, autoplay: { delay: 2500, disableOnInteraction: false, }, navigation: { nextEl: '.client-swiper .swiper-button-next', prevEl: '.client-swiper .swiper-button-prev', }, breakpoints: { 640: { slidesPerView: 3, spaceBetween: 20 }, 768: { slidesPerView: 4, spaceBetween: 24 }, 1024: { slidesPerView: 5, spaceBetween: 32 }, 1280: { slidesPerView: 6, spaceBetween: 32 }, }, });
+      const successStoriesSwiper = new Swiper('.success-stories-swiper', { slidesPerView: 1, spaceBetween: 24, loop: true, autoplay: { delay: 4000, disableOnInteraction: false, }, navigation: { nextEl: '.success-stories-swiper .swiper-button-next', prevEl: '.success-stories-swiper .swiper-button-prev', }, breakpoints: { 640: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 }, }, });
+
+      const testimonialsContainer = document.getElementById('testimonials-container');
+      if (testimonialsContainer) {
+        const testimonialSlides = Array.from(testimonialsContainer.children);
+        const prevTestimonialButton = document.getElementById('prev-testimonial');
+        const nextTestimonialButton = document.getElementById('next-testimonial');
+        const dotsContainer = document.getElementById('testimonial-dots');
+        let currentTestimonialIndex = 0;
+        const slidesPerPage = () => window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 640 ? 2 : 1);
+        let numVisibleSlides = slidesPerPage();
+        function createDots() { if (!dotsContainer || testimonialSlides.length === 0) return; dotsContainer.innerHTML = ''; const numDots = Math.ceil(testimonialSlides.length / numVisibleSlides); if (numDots <= 1) { dotsContainer.classList.add('hidden'); if(prevTestimonialButton) prevTestimonialButton.classList.add('hidden'); if(nextTestimonialButton) nextTestimonialButton.classList.add('hidden'); return; } dotsContainer.classList.remove('hidden'); if(prevTestimonialButton) prevTestimonialButton.classList.remove('hidden'); if(nextTestimonialButton) nextTestimonialButton.classList.remove('hidden'); for (let i = 0; i < numDots; i++) { const dot = document.createElement('button'); dot.className = 'dot-indicator w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:ring-offset-2 dark:focus:ring-offset-slate-800'; dot.setAttribute('aria-label', `Go to testimonial set ${i + 1}`); dot.setAttribute('role', 'tab'); dot.setAttribute('data-index', i); dot.addEventListener('click', () => goToTestimonialPage(i)); dotsContainer.appendChild(dot); } updateTestimonialDots(0); }
+        function updateTestimonialDots(pageIndex) {  if (!dotsContainer) return; dotsContainer.querySelectorAll('.dot-indicator').forEach((dot, idx) => { dot.classList.toggle('active', idx === pageIndex); dot.setAttribute('aria-selected', idx === pageIndex ? 'true' : 'false'); }); }
+        function updateButtonStates() { if(!prevTestimonialButton || !nextTestimonialButton || testimonialSlides.length === 0) return; const currentPage = Math.floor(currentTestimonialIndex / numVisibleSlides); const totalPages = Math.ceil(testimonialSlides.length / numVisibleSlides); prevTestimonialButton.disabled = currentPage === 0; prevTestimonialButton.classList.toggle('opacity-50', prevTestimonialButton.disabled); prevTestimonialButton.classList.toggle('cursor-not-allowed', prevTestimonialButton.disabled); nextTestimonialButton.disabled = currentPage >= totalPages - 1; nextTestimonialButton.classList.toggle('opacity-50', nextTestimonialButton.disabled); nextTestimonialButton.classList.toggle('cursor-not-allowed', nextTestimonialButton.disabled); }
+        function goToTestimonialPage(pageIndex) { if (testimonialSlides.length === 0) return; currentTestimonialIndex = pageIndex * numVisibleSlides; if (currentTestimonialIndex >= testimonialSlides.length) { currentTestimonialIndex = Math.max(0, testimonialSlides.length - numVisibleSlides); } const targetSlide = testimonialSlides[currentTestimonialIndex]; if (targetSlide) { testimonialsContainer.scrollTo({ left: targetSlide.offsetLeft - testimonialsContainer.offsetLeft, behavior: 'smooth' }); } updateTestimonialDots(pageIndex); updateButtonStates(); }
+        if (testimonialSlides.length > 0) { createDots(); updateButtonStates(); prevTestimonialButton.addEventListener('click', () => goToTestimonialPage(Math.floor(currentTestimonialIndex / numVisibleSlides) - 1)); nextTestimonialButton.addEventListener('click', () => goToTestimonialPage(Math.floor(currentTestimonialIndex / numVisibleSlides) + 1)); window.addEventListener('resize', () => { const oldNumVisibleSlides = numVisibleSlides; numVisibleSlides = slidesPerPage(); if (oldNumVisibleSlides !== numVisibleSlides) { createDots(); } goToTestimonialPage(Math.floor(currentTestimonialIndex / numVisibleSlides)); }); }
+      }
+      const currentYearSpan = document.getElementById('currentYear');
+      if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
