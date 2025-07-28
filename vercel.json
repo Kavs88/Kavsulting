@@ -6,11 +6,13 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/Representplus(?:/(.*))?$",
-      "destination": "https://represent-v2-qr2eawppd-sam-kavs-projects.vercel.app/$1"
-    },
+      "source": "/Representplus/:path*",
+      "destination": "https://represent-v2-qr2eawppd-sam-kavs-projects.vercel.app/:path*"
+    }
+  ],
+  "routes": [
     {
       "src": "/(.*)",
       "dest": "/index.html"
