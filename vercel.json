@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/Representplus(?:/(.*))?$",
+      "destination": "https://represent-v2-qr2eawppd-sam-kavs-projects.vercel.app/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
