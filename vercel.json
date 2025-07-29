@@ -11,11 +11,5 @@
       "source": "/Representplus/:path*",
       "destination": "https://represent-v2-qr2eawppd-sam-kavs-projects.vercel.app/:path*"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
   ]
 }
